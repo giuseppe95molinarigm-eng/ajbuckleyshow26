@@ -33,6 +33,7 @@
   --fir: #2E4A3B;
   --bordeaux: #7B2533;
   --rule: #CFC2AC;
+  --paper-mat: #FFFDF8;
 
   /* type */
   --serif: "Cormorant Garamond", serif;
@@ -80,6 +81,14 @@ body {
   page-break-after: always;
   break-after: page;
 }
+.page::before,
+.page::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+.page::before { inset: 20pt; border: 0.9pt solid var(--fir); }
+.page::after  { inset: 23.5pt; border: 0.4pt solid var(--fir); }
 .page:last-child { page-break-after: auto; break-after: auto; }
 
 .live {
@@ -154,10 +163,31 @@ body {
 .photo {
   grid-column: 6 / span 7;
   height: var(--photo-h);
-  overflow: hidden;
   background: var(--tint);
 }
+.photo { position: relative; padding: 5pt; background: var(--paper-mat); outline: 0.6pt solid var(--rule); }
 .photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* Advent seal: the recipe number as a calendar-door sticker on the photograph */
+.seal {
+  position: absolute;
+  top: -8pt;
+  right: 14pt;
+  width: 50pt;
+  height: 50pt;
+  border-radius: 50%;
+  background: var(--bordeaux);
+  color: var(--ivory);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 2.5pt var(--ivory), 0 0 0 3.1pt var(--bordeaux);
+  z-index: 2;
+}
+.seal::before { content: ""; position: absolute; inset: 3pt; border-radius: 50%; border: 0.5pt solid rgba(248, 243, 233, 0.75); }
+.seal .seal-no { font-size: 6pt; line-height: 7pt; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; margin-top: 2pt; }
+.seal .seal-num { font-family: var(--serif); font-weight: 600; font-size: 24pt; line-height: 22pt; font-variant-numeric: lining-nums; }
 .photo.placeholder {
   display: flex;
   flex-direction: column;
@@ -177,23 +207,24 @@ body {
   margin-top: calc(var(--u) * 4);
   display: flex;
   align-items: center;
-  border-top: 0.75pt solid var(--fir);
-  border-bottom: 0.6pt solid var(--rule);
-  padding: 6pt 0 5pt;
+  background: var(--fir);
+  padding: 6.5pt 10pt 5.5pt;
   font-size: var(--label-size);
   line-height: 11pt;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--fir);
+  color: var(--ivory);
 }
 .meta span + span::before {
   content: "";
   display: inline-block;
-  width: 0; height: 9pt;
-  border-left: 0.6pt solid var(--rule);
-  margin: 0 12pt;
-  vertical-align: -1.5pt;
+  width: 3.5pt; height: 3.5pt;
+  background: var(--ivory);
+  opacity: 0.7;
+  transform: rotate(45deg);
+  margin: 0 11pt;
+  vertical-align: 1.5pt;
 }
 
 /* carnivore base / keto assist */
@@ -281,7 +312,7 @@ body {
 .note.reveal {
   margin-top: calc(var(--u) * 4);
   padding-top: 8pt;
-  border-top: 0.6pt solid var(--rule);
+  border-top: 1pt solid var(--bordeaux);
   color: var(--ink);
 }
 .note.reveal .label { color: var(--bordeaux); }

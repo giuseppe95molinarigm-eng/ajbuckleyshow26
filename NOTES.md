@@ -49,4 +49,9 @@ Bravo Three Buns and Ghostfacer Garlic Knots were left out on purpose. The manus
 ## Production notes
 - **Ivory background:** KDP prints colour interiors on white paper. A full-page ivory tint therefore needs bleed (8.625 × 11.25 in) in the final files. The alternative is a white page with ivory used only in panels. This sample is set to trim size with no bleed, as the brief asked.
 - **Trim size:** provisional at 8.5 × 11 in. Everything is driven by CSS variables, so a different trim means a reflow, not a redesign.
-- **Photographs:** still needed. See `source/images/IMAGE_PROMPTS.md`.
+- **Photographs:**
+  - *Source:* AI-generated with FLUX 1.1 Pro Ultra and checked against each recipe. Meatballs and cinnamon rolls were regenerated once because the first versions showed a crumb coating and a drizzled glaze.
+  - *Remaining detail:* on the meatball tray a few crumbs are still scattered next to the dish.
+  - *Disclosure:* these are AI images, so check KDP's AI-content disclosure.
+  - *For the final book:* real photography of the cooked recipes is recommended.
+- **Page frame:** the decorative frame sits 20 pt (0.28 in) inside the trim. That is within KDP's 0.25 in minimum, but trim tolerance can make it look slightly off-centre. Confirm it for print or move it to 0.375 in.

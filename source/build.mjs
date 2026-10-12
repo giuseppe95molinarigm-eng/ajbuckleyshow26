@@ -35,9 +35,15 @@ function typo(s) {
   return t;
 }
 
+// Titles: a short final pair ("Christmas Past", "Chip Cookies") never splits; long pairs may.
+function titleSet(title) {
+  return typo(title).replace(/\u00A0/g, " ").replace(/ (\S+) (\S+)$/, (m, a, b) => (a + b).length <= 14 ? ` ${a}\u00A0${b}` : m);
+}
+
 function photo(r) {
   const file = ["jpg", "jpeg", "png", "webp"].map((x) => `images/${r.slug}.${x}`).find((p) => existsSync(join(SRC, p)));
-  if (file) return `<figure class="photo"><img src="${file}" alt="${esc(r.title)}"></figure>`;
+  const seal = `<span class="seal" aria-hidden="true"><span class="seal-no">No.</span><span class="seal-num">${r.number}</span></span>`;
+  if (file) return `<figure class="photo">${seal}<img src="${file}" alt="${esc(r.title)}"></figure>`;
   return `<figure class="photo placeholder" aria-label="Photograph to come">
       <span class="ph-label">Photograph to come</span>
       <span class="ph-name">${typo(r.title)}</span>
@@ -52,8 +58,8 @@ function page(r, i) {
 <section class="page" id="r${r.number}">
   <div class="live">
     <header class="head">
-      <p class="kicker">${esc(r.section)}<span class="sep"></span>No. ${r.number}</p>
-      <h1 class="title">${typo(r.title).replace(/\u00A0/g, " ").replace(/ (of|and|in|a|the) /g, " $1\u00A0")}</h1>
+      <p class="kicker">${esc(r.section)}</p>
+      <h1 class="title">${titleSet(r.title)}</h1>
       <p class="built-on">${typo(r.builtOn)}</p>
       <p class="headnote">${typo(r.headnote)}</p>
     </header>
