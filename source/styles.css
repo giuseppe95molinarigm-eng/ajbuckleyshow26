@@ -1,0 +1,289 @@
+/* ==========================================================================
+   Delicious Discipline — recipe page styles
+   Trim 8.5 × 11 in (provisional), no bleed. All measures in pt unless noted.
+
+   GRID
+   Live area 504 × 688 pt (margins: top 43, sides 54, bottom 61).
+   12 columns × 25.5 pt, 18 pt gutters. Recipe pages use a 5 | 7 split:
+     cols 1–5  (199.5 pt)  title block / ingredients / variants
+     cols 6–12 (286.5 pt)  photograph / method / The Reveal
+   Spacing unit: 4.5 pt (quarter of the gutter). Vertical gaps are multiples.
+
+   TYPE SCALE (two families only)
+   Cormorant Garamond — display: title 30/31, section heads 16/18, step numerals 16
+   Source Sans 3      — text: body 10.75/14.5, notes 10/13.75, labels 8.5 caps, folio 8
+   ========================================================================== */
+
+@font-face { font-family: "Cormorant Garamond"; font-weight: 500; font-style: normal; src: url("fonts/CormorantGaramond-500.ttf"); }
+@font-face { font-family: "Cormorant Garamond"; font-weight: 500; font-style: italic; src: url("fonts/CormorantGaramond-500Italic.ttf"); }
+@font-face { font-family: "Cormorant Garamond"; font-weight: 600; font-style: normal; src: url("fonts/CormorantGaramond-600.ttf"); }
+@font-face { font-family: "Cormorant Garamond"; font-weight: 600; font-style: italic; src: url("fonts/CormorantGaramond-600Italic.ttf"); }
+@font-face { font-family: "Cormorant Garamond"; font-weight: 700; font-style: normal; src: url("fonts/CormorantGaramond-700.ttf"); }
+@font-face { font-family: "Source Sans 3"; font-weight: 400; font-style: normal; src: url("fonts/SourceSans3-400.ttf"); }
+@font-face { font-family: "Source Sans 3"; font-weight: 400; font-style: italic; src: url("fonts/SourceSans3-400Italic.ttf"); }
+@font-face { font-family: "Source Sans 3"; font-weight: 600; font-style: normal; src: url("fonts/SourceSans3-600.ttf"); }
+@font-face { font-family: "Source Sans 3"; font-weight: 700; font-style: normal; src: url("fonts/SourceSans3-700.ttf"); }
+
+:root {
+  /* colour */
+  --ivory: #F8F3E9;
+  --tint: #F0E8DA;
+  --ink: #2A2A28;
+  --ink-soft: #5A5750;
+  --fir: #2E4A3B;
+  --bordeaux: #7B2533;
+  --rule: #CFC2AC;
+
+  /* type */
+  --serif: "Cormorant Garamond", serif;
+  --sans: "Source Sans 3", sans-serif;
+  --body-size: 10.75pt;
+  --body-lead: 14.5pt;
+  --note-size: 10pt;
+  --note-lead: 13.75pt;
+  --label-size: 8.5pt;
+
+  /* page geometry */
+  --page-w: 8.5in;
+  --page-h: 11in;
+  --m-top: 43pt;
+  --m-side: 54pt;
+  --m-bottom: 61pt;
+  --gutter: 18pt;
+  --u: 4.5pt;
+  --photo-h: 270pt;
+}
+
+@page { size: 8.5in 11in; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--ivory); }
+body {
+  font-family: var(--sans);
+  font-size: var(--body-size);
+  line-height: var(--body-lead);
+  color: var(--ink);
+  font-kerning: normal;
+  font-variant-ligatures: common-ligatures;
+  hyphens: none;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* ---------- page (master) ---------- */
+.page {
+  position: relative;
+  width: var(--page-w);
+  height: var(--page-h);
+  padding: var(--m-top) var(--m-side) var(--m-bottom);
+  background: var(--ivory);
+  overflow: hidden;
+  page-break-after: always;
+  break-after: page;
+}
+.page:last-child { page-break-after: auto; break-after: auto; }
+
+.live {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--gutter);
+  align-content: start;
+}
+
+.folio {
+  position: absolute;
+  left: var(--m-side);
+  right: var(--m-side);
+  bottom: 30pt;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 8pt;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.folio .num { font-weight: 600; letter-spacing: 0.06em; color: var(--ink); }
+
+/* ---------- top band: title block + photograph ---------- */
+.head {
+  grid-column: 1 / span 5;
+  height: var(--photo-h);
+  display: flex;
+  flex-direction: column;
+}
+.kicker {
+  font-size: var(--label-size);
+  line-height: 11pt;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bordeaux);
+  margin-bottom: calc(var(--u) * 2);
+}
+.kicker .sep { display: inline-block; width: 14pt; height: 0; border-top: 0.6pt solid var(--bordeaux); vertical-align: middle; margin: 0 6pt 2pt; }
+.title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 30pt;
+  line-height: 31pt;
+  letter-spacing: -0.005em;
+  color: var(--fir);
+  text-wrap: balance;
+}
+.built-on {
+  margin-top: calc(var(--u) * 2);
+  font-size: var(--note-size);
+  line-height: var(--note-lead);
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+.headnote {
+  margin-top: auto;               /* sits on the photo's bottom edge */
+  padding-top: calc(var(--u) * 3);
+  border-top: 0.6pt solid var(--rule);
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 13.5pt;
+  line-height: 16.5pt;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+
+.photo {
+  grid-column: 6 / span 7;
+  height: var(--photo-h);
+  overflow: hidden;
+  background: var(--tint);
+}
+.photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.photo.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6pt;
+  outline: 0.6pt solid var(--rule);
+  outline-offset: -9pt;
+  text-align: center;
+}
+.photo.placeholder .ph-label { font-size: var(--label-size); font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); }
+.photo.placeholder .ph-name { font-family: var(--serif); font-style: italic; font-size: 14pt; line-height: 17pt; color: var(--ink-soft); max-width: 70%; }
+
+/* ---------- metadata row ---------- */
+.meta {
+  grid-column: 1 / -1;
+  margin-top: calc(var(--u) * 4);
+  display: flex;
+  align-items: center;
+  border-top: 0.75pt solid var(--fir);
+  border-bottom: 0.6pt solid var(--rule);
+  padding: 6pt 0 5pt;
+  font-size: var(--label-size);
+  line-height: 11pt;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fir);
+}
+.meta span + span::before {
+  content: "";
+  display: inline-block;
+  width: 0; height: 9pt;
+  border-left: 0.6pt solid var(--rule);
+  margin: 0 12pt;
+  vertical-align: -1.5pt;
+}
+
+/* carnivore base / keto assist */
+.basis {
+  grid-column: 1 / -1;
+  margin-top: calc(var(--u) * 2);
+  display: flex;
+  gap: var(--gutter);
+  font-size: var(--note-size);
+  line-height: var(--note-lead);
+  min-height: calc(var(--note-lead) * 2);   /* two lines reserved: heads align page to page */
+}
+.basis p { flex: 1; }
+.basis p:first-child { flex: 0 0 auto; width: calc((100% - var(--gutter)) * 5 / 12 + 0pt); }
+.label {
+  font-weight: 600;
+  color: var(--fir);
+}
+
+/* ---------- body: ingredients | method ---------- */
+.col-left  { grid-column: 1 / span 5; margin-top: calc(var(--u) * 5); }
+.col-right { grid-column: 6 / span 7; margin-top: calc(var(--u) * 5); }
+
+.section-head {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 17pt;
+  line-height: 18pt;
+  color: var(--fir);
+  padding-bottom: 5pt;
+  margin-bottom: calc(var(--u) * 2);
+  border-bottom: 0.6pt solid var(--rule);
+  break-after: avoid;
+}
+
+.ingredients { list-style: none; }
+.ingredients li {
+  padding: 3pt 0 3.5pt 10pt;
+  text-indent: -10pt;
+  border-bottom: 0.4pt dotted var(--rule);
+  text-wrap: pretty;
+  break-inside: avoid;
+}
+.ingredients li::before { content: "\2022"; color: var(--bordeaux); display: inline-block; width: 10pt; text-indent: 0; }
+.ingredients li:last-child { border-bottom: none; }
+
+.steps { list-style: none; counter-reset: step; }
+.steps li {
+  position: relative;
+  padding-left: 22pt;
+  margin-bottom: calc(var(--u) * 2);
+  counter-increment: step;
+  text-wrap: pretty;
+  orphans: 2; widows: 2;
+  break-inside: avoid;
+}
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: -1.5pt;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 17pt;
+  line-height: var(--body-lead);
+  font-variant-numeric: lining-nums;
+  color: var(--bordeaux);
+}
+.steps li:last-child { margin-bottom: 0; }
+
+/* ---------- notes & variants (subordinate) ---------- */
+.note {
+  font-size: var(--note-size);
+  line-height: var(--note-lead);
+  text-wrap: pretty;
+  break-inside: avoid;
+}
+.note .label { font-weight: 600; }
+.note.variant {
+  margin-top: calc(var(--u) * 4);
+  padding: 8pt 10pt 9pt;
+  background: var(--tint);
+  border-left: 1.5pt solid var(--fir);
+}
+.note.reveal {
+  margin-top: calc(var(--u) * 4);
+  padding-top: 8pt;
+  border-top: 0.6pt solid var(--rule);
+  color: var(--ink);
+}
+.note.reveal .label { color: var(--bordeaux); }
+
+.frac { font-feature-settings: "frac" 1; }
