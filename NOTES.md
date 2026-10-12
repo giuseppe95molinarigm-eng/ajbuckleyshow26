@@ -29,7 +29,22 @@ Bravo Three Buns and Ghostfacer Garlic Knots were left out on purpose. The manus
 2. **Christmas Morning Cinnamon Rolls:** step 3 calls for a "buttered 8 by 8 pan", but the 5 tablespoons of butter are fully used (3 in step 2, 2 in step 5), so the butter for the pan isn't counted. "9 by 12 rectangle" has no unit (inches presumably). One ingredient line combines two different sweeteners.
 3. **Deviled Eggs:** the "25 minutes" doesn't seem to include cooking the bacon, which is listed as "cooked crisp and crumbled".
 4. **Chocolate Chip Cookies:** the header times (15 minutes of work, 12 in the oven) don't include the 10-minute cool, 20-minute chill and 15-minute rest in the method. This is consistent with the style of the rest of the book, but worth knowing.
-5. The section is called "Party" in the contents table and "Bring It to the Party" as the Part title. The sample uses the Part title.
+5. **Cinnamon Rolls (also):**
+   - Step 1 says "Heat the oven to 375°F", which clashes with the headnote's plan to build the rolls Christmas Eve and bake them in the morning.
+   - "then 30 more" has no unit (seconds implied).
+   - The front matter says recipe 2's icing goes on the cinnamon rolls, but No. 25 has its own icing.
+6. **Meatball Ornaments (also):** counting marinara, the recipe has 8 ingredients, which breaks house rule 1 (7 max).
+7. **Deviled Eggs (also):** no quantity is given for smoked paprika or for salt and pepper, and the type of mustard is not specified.
+8. The section is called "Party" in the contents table and "Bring It to the Party" as the Part title. The sample uses the Part title.
+
+## Independent QA (separate agent)
+- **Content:** a word-for-word comparison against the manuscript found no defects.
+- **Layout:** no blocking issues. Its minor points were fixed:
+  - ragged short lines, by switching to normal wrapping and two-word anti-widow ties
+  - the "of" left at a title line end
+- **Kept by design:**
+  - The Reveal changes column from page to page. It closes whichever column gives the shorter page.
+  - The headnote sits on the photo's bottom edge, so the space above it changes with title length.
 
 ## Production notes
 - **Ivory background:** KDP prints colour interiors on white paper. A full-page ivory tint therefore needs bleed (8.625 × 11.25 in) in the final files. The alternative is a white page with ivory used only in panels. This sample is set to trim size with no bleed, as the brief asked.

@@ -136,7 +136,7 @@ body {
   font-size: var(--note-size);
   line-height: var(--note-lead);
   color: var(--ink-soft);
-  text-wrap: pretty;
+  text-wrap: wrap;
 }
 .headnote {
   margin-top: auto;               /* sits on the photo's bottom edge */
@@ -148,7 +148,7 @@ body {
   font-size: 13.5pt;
   line-height: 16.5pt;
   color: var(--ink);
-  text-wrap: pretty;
+  text-wrap: wrap;
 }
 
 .photo {
@@ -234,7 +234,7 @@ body {
   padding: 3pt 0 3.5pt 10pt;
   text-indent: -10pt;
   border-bottom: 0.4pt dotted var(--rule);
-  text-wrap: pretty;
+  text-wrap: wrap;
   break-inside: avoid;
 }
 .ingredients li::before { content: "\2022"; color: var(--bordeaux); display: inline-block; width: 10pt; text-indent: 0; }
@@ -246,7 +246,7 @@ body {
   padding-left: 22pt;
   margin-bottom: calc(var(--u) * 2);
   counter-increment: step;
-  text-wrap: pretty;
+  text-wrap: wrap;
   orphans: 2; widows: 2;
   break-inside: avoid;
 }
@@ -268,7 +268,7 @@ body {
 .note {
   font-size: var(--note-size);
   line-height: var(--note-lead);
-  text-wrap: pretty;
+  text-wrap: wrap;
   break-inside: avoid;
 }
 .note .label { font-weight: 600; }

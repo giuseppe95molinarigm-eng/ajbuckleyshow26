@@ -30,8 +30,8 @@ function typo(s) {
   t = t.replace(/(^|[^\d/])(\d)\/(\d)(?![\d/])/g, '$1<span class="frac">$2/$3</span>');
   // keep a number with its unit / the word that follows it on the same line
   t = t.replace(/(\d) (cups?|teaspoons?|tablespoons?|ounces?|pounds?|minutes|seconds|inch|inches|eggs?|sticks?|slices?|ribs?|cloves?|balls|halves|squares|by)\b/g, "$1 $2");
-  // anti-widow: tie a short final word group to the word before it
-  t = t.replace(/ (\S+) (\S+)$/, (m, a, b) => /[<>"=]/.test(a + b) ? m : (a + b).replace(/<[^>]+>/g, "").length <= 10 ? `\u00A0${a}\u00A0${b}` : ` ${a}\u00A0${b}`);
+  // anti-widow: the last two words of a block never separate
+  t = t.replace(/ (?=[^ <>"=]+$)/, "\u00A0");
   return t;
 }
 
@@ -53,7 +53,7 @@ function page(r, i) {
   <div class="live">
     <header class="head">
       <p class="kicker">${esc(r.section)}<span class="sep"></span>No. ${r.number}</p>
-      <h1 class="title">${typo(r.title)}</h1>
+      <h1 class="title">${typo(r.title).replace(/\u00A0/g, " ").replace(/ (of|and|in|a|the) /g, " $1\u00A0")}</h1>
       <p class="built-on">${typo(r.builtOn)}</p>
       <p class="headnote">${typo(r.headnote)}</p>
     </header>
@@ -117,6 +117,7 @@ const report = await pg.evaluate(() => {
     out.push({
       id: p.id,
       spareBelowPt: +((live.bottom - maxBottom) * ptPerPx).toFixed(1),
+      hOverflow: [...p.querySelectorAll(".live *")].filter((e) => e.scrollWidth > e.clientWidth + 1 && getComputedStyle(e).overflow !== "hidden").length,
       headOverflowPt: +((head.scrollHeight - head.clientHeight) * ptPerPx).toFixed(1),
       fontsLoaded: [...document.fonts].filter((f) => f.status === "loaded").length,
     });
